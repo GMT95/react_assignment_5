@@ -11,24 +11,69 @@ class App extends Component {
     this.state = {
       list: [
               {
-              name: "Angular JS",
+              name: "AngularJS",
               quizzes: [{name: "Quiz 1",questions: 30},{name: "Quiz 2",questions: 20},{name: "Quiz 3",questions: 15}]
               },
-              {name: "React JS",
+              {name: "ReactJS",
               quizzes: [{name: "Quiz 1",questions: 30},{name: "Quiz 2",questions: 20},{name: "Quiz 3",questions: 15}]
               },
-              {name: "Vue JS",
+              {name: "VueJS",
               quizzes: [{name: "Quiz 1",questions: 30},{name: "Quiz 2",questions: 20},{name: "Quiz 3",questions: 15}]
               }
             ],
       quiz: null,
-      qs: [
+      AngularJS1: [
         {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
         {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
-      ]
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      AngularJS2: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      AngularJS3: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      ReactJS1: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      ReactJS2: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      ReactJS3: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      VueJS1: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      VueJS2: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+      VueJS3: [
+        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+      ],
+
+      takingQuiz: false,
+      currentQuizName: ''
     }
 
     this.passListToQuizInfo = this.passListToQuizInfo.bind(this)
+    this.quizNum = this.quizNum.bind(this);
   }
 
   passListToQuizInfo(index) {
@@ -39,16 +84,25 @@ class App extends Component {
   goBackToQuiz() {
     this.setState({quiz: null})
   }
-  
+
+  quizNum(name,quizname) {
+    console.log('Quiz Name',name,quizname);
+    this.setState({takingQuiz: true,currentQuizName: name+quizname})
+  }
+
+    
   render() {
-    const { list,quiz,qs } = this.state;
+    const { list,quiz,takingQuiz,currentQuizName } = this.state;
+    console.log(this.state[currentQuizName])
     return (
       <div className="App">
-        {/* {!quiz ? 
+      { !takingQuiz ? 
+        !quiz ? 
         <QuizList qlist={list} enterQuiz={this.passListToQuizInfo} />
-        :<QuizInfo obj={quiz} goBack={_ => this.goBackToQuiz()}/>  
-        } */}
-        <QuizTaker quizname={qs} />
+        :<QuizInfo obj={quiz} goBack={_ => this.goBackToQuiz()} quiznum={this.quizNum}/>  
+        :<QuizTaker quizname={this.state[currentQuizName]} />
+      }
+
       </div>
     );
   }

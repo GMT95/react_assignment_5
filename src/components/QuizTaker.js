@@ -11,7 +11,7 @@ class QuizTaker extends Component {
     }
 
     this.state = {
-      count: localStorage.getItem('LScount'),
+      count: Number(localStorage.getItem('LScount')),
       score: localStorage.getItem('score'),
       myanswer: '',
       result: false
@@ -23,10 +23,22 @@ class QuizTaker extends Component {
   incerementCount() {
     let { count } = this.state;
     const counter = Number(localStorage.getItem('LScount'))
+    //const score = Number(localStorage.getItem('score'))
     //console.log(counter);
     Number(localStorage.setItem('LScount', counter + 1));
-    
     this.setState({ count: ++count })
+  }
+
+  checkAnswer(myAns,corrAns) {
+    const score = Number(localStorage.getItem('score'));
+    if(myAns === corrAns) {
+      console.log(corrAns);
+      localStorage.setItem('score',score + 10);
+      this.setState({ score: score + 10 })
+    }
+    else {
+      return;
+    }
   }
 
   handleRadioChange(event) {
@@ -38,14 +50,14 @@ class QuizTaker extends Component {
 
   render() {
     const { quizname } = this.props;
-    const { result } = this.state;
-    const count = Number(localStorage.getItem('LScount'));
-
+    const { result,myanswer,count,score } = this.state;
+    //const count = Number(localStorage.getItem('LScount'));
+    const finalRes = localStorage.getItem('percentage');
     return (
-      result ?
-        <div className="App">Result</div>
+      finalRes ?
+        <div className="App">Result: {Number(localStorage.getItem('percentage')).toFixed(2)}%</div>
         : <div className="App">
-          <h1>{quizname[count].name}</h1>
+          <h2>{quizname[count].name}</h2>
           <h3>Question {count + 1} of {quizname.length}</h3>
           <h2>{quizname[count].question}</h2>
           {
@@ -53,21 +65,25 @@ class QuizTaker extends Component {
               <div>
                 <label>
                   <input type="radio" name="Quiz" onChange={this.handleRadioChange} value={item}/>
-                  {item}</label>
+                  {item}
+                </label>
               </div>
             )
           }
           <button onClick={_ => {
-            if (count == quizname.length - 1) {
+            if (count === quizname.length - 1) {
               //debugger
+              this.checkAnswer(myanswer,quizname[count].cr);
+              localStorage.setItem('percentage', (score * 100/((quizname.length - 1) * 10)))
               this.setState({ result: true })
             } else {
               console.log('hello', count);
+              this.checkAnswer(myanswer,quizname[count].cr);
               this.incerementCount()
             }
           }}>
             Next
-      </button>
+          </button>
 
         </div>
     );
