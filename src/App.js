@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import QuizList from './components/QuizList'
 import QuizInfo from './components/QuizInfo'
 import QuizTaker from './components/QuizTaker'
+import Login from './components/login'
 import './App.css';
 
 class App extends Component {
@@ -96,12 +97,13 @@ class App extends Component {
     console.log(this.state[currentQuizName])
     return (
       <div className="App">
-      { !takingQuiz ? 
+      {/* { !takingQuiz ? 
         !quiz ? 
         <QuizList qlist={list} enterQuiz={this.passListToQuizInfo} />
         :<QuizInfo obj={quiz} goBack={_ => this.goBackToQuiz()} quiznum={this.quizNum}/>  
         :<QuizTaker quizname={this.state[currentQuizName]} />
-      }
+      } */}
+      <Login />
 
       </div>
     );
