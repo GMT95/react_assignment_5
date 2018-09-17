@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import Timer from 'react-countdown-now';
 
 class QuizTaker extends Component {
   constructor(props) {
@@ -58,6 +59,7 @@ class QuizTaker extends Component {
         <div className="App">Result: {Number(localStorage.getItem('percentage')).toFixed(2)}%</div>
         : <div className="App">
           <h2>{quizname[count].name}</h2>
+          <Timer date={Date.now() + 100000}/>
           <h3>Question {count + 1} of {quizname.length}</h3>
           <h2>{quizname[count].question}</h2>
           {
