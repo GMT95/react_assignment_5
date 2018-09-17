@@ -13,10 +13,10 @@ class Login extends Component {
 				<h1>Quiz App</h1>
 				<form onSubmit={formSubmit}>
   				<div class="form-group">
-						<input type="email" class="form-control" onChange={emailChange} placeholder="Enter email"/>
+						<input type="email" class="form-control" onChange={emailChange} placeholder="johndoe@w3.com"/>
 					</div>
 					<div class="form-group">
-						<input type="password" class="form-control" onChange={passChange} placeholder="Password"/>
+						<input type="password" class="form-control" onChange={passChange} placeholder="12345"/>
 					</div>
   				<button type="submit" class="btn btn-primary">Submit</button>
 				</form>
