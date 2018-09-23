@@ -50,12 +50,12 @@ class  QuizInfo extends Component {
                 <h2 style={{color: 'blue'}}>{value.name}</h2>
                 <h3>Total Questions: {value.questions}</h3>
                 { /* <button onClick={_ => {quiznum(obj.name,index+1)}}>Start Quiz</button> */ }
-                <button onClick={_ => {this.renderProctor(),this.setState({Qindex: index})}}>Start Quiz</button>
+                <button onClick={_ => {this.renderProctor(),this.setState({Qindex: index})}} className="btn btn-success" style={{margin: 10}}>Start Quiz</button>
               </div>
             )
           })}
           
-          <br/><button onClick={goBack}>Back</button>
+          <br/><button onClick={goBack} className="btn btn-danger">Back</button>
           </div>
         : <Proctoring proctoringSubmit={_ => {this.proctoringFormHandler; quiznum(obj.name,Qindex+1)}} proctoringKey={this.proctoringKeyHandler} />
         }

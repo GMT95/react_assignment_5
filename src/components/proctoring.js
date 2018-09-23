@@ -12,10 +12,10 @@ class Proctoring extends Component {
       <div style={{marginLeft: 'auto',marginRight: 'auto', width: '20%',marginTop: 100}}>
         <h3>Enter Key to Proceed</h3>
         <form onSubmit={proctoringSubmit}>
-          <div class="form-group">
-            <input type="password" class="form-control" placeholder="54321" onChange={proctoringKey} />
+          <div className="form-group">
+            <input type="password" className="form-control" placeholder="54321" onChange={proctoringKey} />
           </div>
-          <button type="submit" class="btn btn-primary">Start</button>
+          <button type="submit" className="btn btn-primary">Start</button>
         </form>
       </div>
     );

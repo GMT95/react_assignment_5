@@ -10,7 +10,7 @@ class QuizList extends Component {
                 <ul>
                     {qlist.map((value,index) => <li>
                         {value.name}
-                        <button onClick={_ => enterQuiz(index)}>Enter the Quiz</button>
+                        <button onClick={_ => enterQuiz(index)} className="btn btn-warning" style={{margin: 10}}>Enter the Quiz</button>
                     </li>
                     )}
                 </ul>

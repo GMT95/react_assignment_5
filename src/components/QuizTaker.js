@@ -53,12 +53,12 @@ class QuizTaker extends Component {
     const { quizname } = this.props;
     const { result,myanswer,count,score } = this.state;
     //const count = Number(localStorage.getItem('LScount'));
-    const finalRes = localStorage.getItem('percentage');
+    const finalRes = JSON.parse(localStorage.getItem(quizname[count].library+quizname[count].name));
     return (
       finalRes ?
         <div className="App">
-        <p>Result: {Number(localStorage.getItem('percentage')).toFixed(2)}%</p>
-        <button onClick={this.props.backFromResult}>Back</button>
+        <p>Result: {Number(localStorage.getItem(quizname[count].library+quizname[count].name)).toFixed(2)}%</p>
+        <button onClick={_ => {this.props.backFromResult}} className="btn btn-danger">Back</button>
         </div>
         : <div className="App">
           <h2>{quizname[count].name}</h2>
@@ -79,14 +79,17 @@ class QuizTaker extends Component {
             if (count === quizname.length - 1) {
               //debugger
               this.checkAnswer(myanswer,quizname[count].cr);
-              localStorage.setItem('percentage', (score * 100/((quizname.length - 1) * 10)))
+              console.log('Quiz Object-->',quizname[count].library,quizname[count].name);
+              localStorage.setItem(quizname[count].library+quizname[count].name, (score * 100/((quizname.length - 1) * 10)))
+              localStorage.setItem('LScount',0);
+              localStorage.setItem('score',0)
               this.setState({ result: true })
             } else {
               console.log('hello', count);
               this.checkAnswer(myanswer,quizname[count].cr);
               this.incerementCount()
             }
-          }}>
+          }} className="btn btn-primary">
             Next
           </button>
 
