@@ -56,7 +56,10 @@ class QuizTaker extends Component {
     const finalRes = localStorage.getItem('percentage');
     return (
       finalRes ?
-        <div className="App">Result: {Number(localStorage.getItem('percentage')).toFixed(2)}%</div>
+        <div className="App">
+        <p>Result: {Number(localStorage.getItem('percentage')).toFixed(2)}%</p>
+        <button onClick={this.props.backFromResult}>Back</button>
+        </div>
         : <div className="App">
           <h2>{quizname[count].name}</h2>
           <Timer date={Date.now() + 100000}/>

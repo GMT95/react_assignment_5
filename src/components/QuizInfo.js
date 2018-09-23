@@ -40,7 +40,7 @@ class  QuizInfo extends Component {
     const { proctoringComponent,Qindex }  = this.state;
     return (
       <div className="App">
-        { proctoringComponent ? 
+        { !proctoringComponent ? 
           <div>
           <h1 style={{color:'red'}}>{obj.name}</h1>
           

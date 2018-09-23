@@ -31,9 +31,9 @@ class App extends Component {
         {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
       ],
       AngularJS2: [
-        {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
-        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
-        {name: "Quiz 1",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 2",question: "What is Angular",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
+        {name: "Quiz 2",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
+        {name: "Quiz 2",question: "What is PReact?",answers: ["It is a library","It is a view Library","It is a backend framework"],cr: "It is a view Library"},
       ],
       AngularJS3: [
         {name: "Quiz 1",question: "What is React?",answers: ["It is a framework","It is a view Library","It is a backend framework"],cr:"It is a view Library"},
@@ -144,13 +144,15 @@ class App extends Component {
     const { list,quiz,takingQuiz,currentQuizName,user } = this.state;
     console.log(this.state[currentQuizName])
     return (
+
       <div className="App">
+      {user && <button onClick={_ => this.setState({user: false})}>Logout</button>}
       { user ? 
         !takingQuiz ? 
         !quiz ? 
         <QuizList qlist={list} enterQuiz={this.passListToQuizInfo} />
         :<QuizInfo obj={quiz} goBack={_ => this.goBackToQuiz()} quiznum={this.quizNum}/>  
-        :<QuizTaker quizname={this.state[currentQuizName]} />
+        :<QuizTaker quizname={this.state[currentQuizName]} backFromResult={_ => this.setState({takingQuiz: false})}/>
         :<Login emailChange={this.emailHandler} passChange={this.passHandler} formSubmit={this.formHandler} />
       }
       {/* <Proctoring proctoringSubmit={this.proctoringFormHandler} proctoringKey={this.proctoringKeyHandler} /> */}
